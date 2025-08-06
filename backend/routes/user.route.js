@@ -6,7 +6,9 @@ import {
   getUserProfile,
   logoutUser,
 } from "../controllers/user.controller.js";
-import authUser from "../middlewares/auth.middleware.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
+
+const { authUser } = authMiddleware;
 
 const userRouter = express.Router();
 
