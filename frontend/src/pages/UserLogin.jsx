@@ -27,7 +27,7 @@ const UserLogin = () => {
           onSubmit={(e) => {
             submitHandler(e);
           }}>
-          <h3 className="text-2xl mb-2 font-medium">What's your email</h3>
+          <h3 className="text-base mb-2 font-medium">What's your email</h3>
           <input
             required
             value={email}
@@ -38,7 +38,7 @@ const UserLogin = () => {
             type="email"
             placeholder="email@example.com"
           />
-          <h3 className="text-2xl mb-2 font-medium">Enter Password</h3>
+          <h3 className="text-base mb-2 font-medium">Enter Password</h3>
           <input
             required
             value={password}

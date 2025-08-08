@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const CaptainLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  const [captainData, setCaptainData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUserData({
+    setCaptainData({
       email: email,
       password: password,
     });
@@ -26,7 +26,7 @@ const CaptainLogin = () => {
           onSubmit={(e) => {
             submitHandler(e);
           }}>
-          <h3 className="text-2xl mb-2 font-medium">What's your email</h3>
+          <h3 className="text-base mb-2 font-medium">What's your email</h3>
           <input
             required
             value={email}
@@ -37,7 +37,7 @@ const CaptainLogin = () => {
             type="email"
             placeholder="email@example.com"
           />
-          <h3 className="text-2xl mb-2 font-medium">Enter Password</h3>
+          <h3 className="text-base mb-2 font-medium">Enter Password</h3>
           <input
             required
             value={password}
@@ -53,18 +53,18 @@ const CaptainLogin = () => {
           </button>
         </form>
         <p className="text-center font-normal">
-          New Here?{" "}
-          <Link to="/signup" className="text-blue-600">
-            Create New Account
+          Join a feet?{" "}
+          <Link to="/captain-signup" className="text-blue-600">
+            Register As a Captain
           </Link>
         </p>
       </div>
 
       <div>
         <Link
-          to="/captain-login"
-          className="bg-[#10b461] flex items-center justify-center text-white text-fff font-semibold mb-7 rounded px-4 py-2 w-full text-lg placeholder:text-base">
-          Sign in as Captain
+          to="/login"
+          className="bg-[#d5622d] flex items-center justify-center text-white text-fff font-semibold mb-7 rounded px-4 py-2 w-full text-lg placeholder:text-base">
+          Sign in as User
         </Link>
       </div>
     </div>
