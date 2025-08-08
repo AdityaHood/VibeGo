@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import VibeGoLogo from "../assets/VibeGo_Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import UserContext from "../context/TempContext";
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
@@ -9,19 +11,31 @@ const UserSignup = () => {
   const [lastName, setLastName] = useState("");
   const [userData, setUserData] = useState({});
 
-  const submitHandler = (e) => {
+  const navigate = useNavigate();
+  const { user, setUser } = React.useContext(UserContext);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    setUserData({
+    const newUser = {
       fullName: {
         firstName: firstName,
         lastName: lastName,
       },
       email: email,
       password: password,
-    });
+    };
 
-    console.log(userData);
+    // console.log(userData);
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/user/register`,
+      newUser
+    );
+
+    if (response.status === 201) {
+      const data = response.data;
+      navigate("/login");
+    }
 
     setEmail("");
     setFirstName("");
@@ -83,7 +97,7 @@ const UserSignup = () => {
             placeholder="password"
           />
           <button className="bg-[#111]  text-white text-fff font-semibold mb-3 mt-3 rounded px-4 py-2 w-full text-lg placeholder:text-base">
-            Login
+            Create Account
           </button>
         </form>
         <p className="text-center font-normal">
