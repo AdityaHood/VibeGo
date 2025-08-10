@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import VibeGoLogo from "../assets/VibeGo_Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "../context/TempContext";
+import { userDataContext } from "../context/UserContext";
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ const UserSignup = () => {
   const [userData, setUserData] = useState({});
 
   const navigate = useNavigate();
-  const { user, setUser } = React.useContext(UserContext);
+  const { user, setUser } = useContext(userDataContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -28,13 +28,15 @@ const UserSignup = () => {
 
     // console.log(userData);
     const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/user/register`,
+      `${import.meta.env.VITE_BASE_URL}/api/users/register`,
       newUser
     );
 
     if (response.status === 201) {
       const data = response.data;
-      navigate("/login");
+      setUser(data.user);
+      localStorage.setItem("token", data.token);
+      navigate("/home");
     }
 
     setEmail("");
